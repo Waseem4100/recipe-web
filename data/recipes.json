@@ -1,0 +1,235 @@
+[
+  {
+    "id": 1792252971624,
+    "title": "biryani",
+    "description": "rice",
+    "image": "",
+    "category": "Dinner",
+    "difficulty": "Easy",
+    "time": 30,
+    "ingredients": [
+      "dAIDHajd"
+    ],
+    "steps": [
+      "dADad"
+    ],
+    "authorId": 1792252934290,
+    "authorName": "waseem ahmed",
+    "ratings": [
+      {
+        "userId": 1792252934290,
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Fluffy Blueberry Pancakes",
+    "description": "Thick, soft pancakes bursting with blueberries.",
+    "image": "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=800&q=70",
+    "category": "Breakfast",
+    "difficulty": "Easy",
+    "time": 25,
+    "ingredients": [
+      "1½ cups flour",
+      "1 tbsp sugar",
+      "2 tsp baking powder",
+      "1 cup milk",
+      "1 egg",
+      "1 cup blueberries",
+      "2 tbsp melted butter"
+    ],
+    "steps": [
+      "Whisk the dry ingredients together.",
+      "Mix milk, egg and butter, then fold into the dry mix.",
+      "Fold in the blueberries.",
+      "Cook ¼ cup scoops on a hot greased pan until bubbles form, flip, and cook 1 more minute."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 5
+      },
+      {
+        "userId": -1,
+        "value": 4
+      },
+      {
+        "userId": 1792252934290,
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chickpea Coconut Curry",
+    "description": "A creamy, one-pot vegan curry ready in 30 minutes.",
+    "image": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=800&q=70",
+    "category": "Vegan",
+    "difficulty": "Easy",
+    "time": 30,
+    "ingredients": [
+      "2 cans chickpeas",
+      "1 can coconut milk",
+      "1 onion",
+      "3 garlic cloves",
+      "2 tbsp curry powder",
+      "1 can chopped tomatoes",
+      "Fresh coriander"
+    ],
+    "steps": [
+      "Sauté onion and garlic until soft.",
+      "Stir in curry powder for 1 minute.",
+      "Add tomatoes, chickpeas and coconut milk.",
+      "Simmer 20 minutes and finish with coriander. Serve with rice."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Molten Chocolate Lava Cakes",
+    "description": "Individual cakes with a gooey chocolate centre.",
+    "image": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&w=800&q=70",
+    "category": "Desserts",
+    "difficulty": "Medium",
+    "time": 35,
+    "ingredients": [
+      "100g dark chocolate",
+      "100g butter",
+      "2 eggs + 2 yolks",
+      "¼ cup sugar",
+      "2 tbsp flour"
+    ],
+    "steps": [
+      "Melt chocolate and butter together.",
+      "Whisk eggs, yolks and sugar until pale.",
+      "Combine both mixtures and fold in the flour.",
+      "Pour into greased ramekins and bake at 220°C for 10–12 minutes.",
+      "Rest 1 minute, then flip onto a plate."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 5
+      },
+      {
+        "userId": -1,
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Classic Chicken Biryani",
+    "description": "Fragrant layered rice with spiced marinated chicken.",
+    "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=70",
+    "category": "Dinner",
+    "difficulty": "Hard",
+    "time": 90,
+    "ingredients": [
+      "1 kg chicken",
+      "3 cups basmati rice",
+      "1 cup yogurt",
+      "3 onions, fried",
+      "Biryani masala",
+      "Saffron milk",
+      "Mint and coriander"
+    ],
+    "steps": [
+      "Marinate chicken in yogurt and masala for 1 hour.",
+      "Par-boil the rice with whole spices.",
+      "Cook the chicken until tender.",
+      "Layer rice over chicken with fried onions, herbs and saffron milk.",
+      "Seal and steam on low heat for 20 minutes."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 5
+      },
+      {
+        "userId": -1,
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Avocado Toast with Egg",
+    "description": "Crunchy sourdough, smashed avocado and a jammy egg.",
+    "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=70",
+    "category": "Breakfast",
+    "difficulty": "Easy",
+    "time": 10,
+    "ingredients": [
+      "2 slices sourdough",
+      "1 ripe avocado",
+      "2 eggs",
+      "Lemon juice",
+      "Chilli flakes",
+      "Salt"
+    ],
+    "steps": [
+      "Toast the bread.",
+      "Smash avocado with lemon juice and salt.",
+      "Boil eggs for 6½ minutes, then peel.",
+      "Spread avocado on toast, top with halved eggs and chilli flakes."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 4
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Quinoa Buddha Bowl",
+    "description": "Roasted veggies, quinoa and a lemon-tahini dressing.",
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=70",
+    "category": "Vegan",
+    "difficulty": "Easy",
+    "time": 40,
+    "ingredients": [
+      "1 cup quinoa",
+      "1 sweet potato",
+      "1 cup broccoli",
+      "1 can chickpeas",
+      "2 tbsp tahini",
+      "1 lemon"
+    ],
+    "steps": [
+      "Cook the quinoa.",
+      "Roast sweet potato, broccoli and chickpeas at 200°C for 25 minutes.",
+      "Whisk tahini, lemon juice and water into a dressing.",
+      "Assemble bowls and drizzle with dressing."
+    ],
+    "authorId": 0,
+    "authorName": "RecipeHub",
+    "ratings": [
+      {
+        "userId": 0,
+        "value": 4
+      },
+      {
+        "userId": -1,
+        "value": 5
+      }
+    ]
+  }
+]

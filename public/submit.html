@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit a Recipe – RecipeHub</title><link rel="stylesheet" href="/css/style.css"></head><body>
+<main class="wrap">
+  <div class="page-head"><h1>Submit a recipe</h1></div>
+  <div id="gate"></div>
+  <form class="form-card" id="form" hidden>
+    <label for="title">Recipe title</label><input id="title" required maxlength="80">
+    <label for="description">Short description <span class="hint">(optional)</span></label><input id="description" maxlength="140">
+    <div class="two">
+      <div><label for="category">Category</label><select id="category" required></select></div>
+      <div><label for="time">Cooking time (minutes)</label><input id="time" type="number" min="1" max="600" required></div>
+    </div>
+    <div class="two">
+      <div><label for="difficulty">Difficulty</label><select id="difficulty"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
+      <div><label for="image">Image URL <span class="hint">(optional)</span></label><input id="image" type="url" placeholder="https://…"></div>
+    </div>
+    <label for="ingredients">Ingredients <span class="hint">(one per line)</span></label><textarea id="ingredients" rows="6" required></textarea>
+    <label for="steps">Instructions <span class="hint">(one step per line)</span></label><textarea id="steps" rows="7" required></textarea>
+    <div id="msg"></div>
+    <button class="btn" type="submit" style="margin-top:1.2rem">Publish recipe</button>
+  </form>
+</main>
+<script src="/js/app.js"></script>
+<script>
+renderLayout('submit');
+if (!Auth.token) {
+  gate.innerHTML = '<div class="msg err">You need an account to submit a recipe. <a href="/profile.html"><u>Log in or register</u></a>.</div>';
+} else {
+  form.hidden = false;
+  category.innerHTML = CATEGORIES.map(c => `<option>${c.name}</option>`).join('');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+      const r = await api('/recipes', { method: 'POST', body: {
+        title: title.value, description: description.value, category: category.value, time: time.value,
+        difficulty: difficulty.value, image: image.value, ingredients: ingredients.value, steps: steps.value } });
+      location.href = '/recipe.html?id=' + r.id;
+    } catch (err) { showMsg(msg, err.message); }
+  });
+}
+</script></body></html>

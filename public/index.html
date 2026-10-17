@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RecipeHub – Find and share recipes</title><link rel="stylesheet" href="/css/style.css"></head><body>
+<main>
+  <section class="hero"><div class="wrap">
+    <h1>Cook something worth sharing.</h1>
+    <p>Browse home-cooked recipes from our community, or add your family favourite for others to try.</p>
+    <div class="cta"><a class="btn alt" href="/recipes.html">Browse Recipes</a><a class="btn ghost" href="/submit.html">Submit a Recipe</a></div>
+  </div></section>
+
+  <div class="wrap">
+    <form class="search" id="searchForm" role="search">
+      <input type="search" id="q" placeholder="Search by recipe title or ingredient, e.g. chickpeas" aria-label="Search recipes">
+      <button class="btn" type="submit">Search</button>
+    </form>
+
+    <section class="block"><h2>Recipe categories</h2><div class="cats" id="cats"></div></section>
+    <section class="block"><h2>Top-rated recipes</h2><div class="grid" id="featured"></div></section>
+  </div>
+</main>
+<script src="/js/app.js"></script>
+<script>
+renderLayout('home');
+document.getElementById('cats').innerHTML = CATEGORIES.map(c =>
+  `<a class="cat" href="/recipes.html?category=${c.name}"><span class="emoji">${c.emoji}</span>${c.name}</a>`).join('');
+document.getElementById('searchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  location.href = '/recipes.html?q=' + encodeURIComponent(document.getElementById('q').value.trim());
+});
+api('/recipes').then(list => {
+  list.sort((a, b) => b.rating - a.rating);
+  document.getElementById('featured').innerHTML = list.slice(0, 3).map(recipeCard).join('');
+}).catch(err => document.getElementById('featured').innerHTML = `<p class="empty">${esc(err.message)}</p>`);
+</script></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recipe – RecipeHub</title><link rel="stylesheet" href="/css/style.css"></head><body>
+<main class="wrap" id="root"><p class="empty">Loading recipe…</p></main>
+<script src="/js/app.js"></script>
+<script>
+renderLayout('browse');
+const id = new URLSearchParams(location.search).get('id');
+const root = document.getElementById('root');
+
+function draw(r) {
+  document.title = r.title + ' – RecipeHub';
+  const mine = Auth.user && Auth.user.id === r.authorId;
+  root.innerHTML = `
+  <div class="detail">
+    <img class="hero-img" src="${esc(r.image)}" alt="${esc(r.title)}" onerror="this.removeAttribute('src')">
+    <div>
+      <div class="meta"><span class="tag">${esc(r.category)}</span><span class="tag ${esc(r.difficulty)}">${esc(r.difficulty)}</span><span>⏱ ${r.time} min</span></div>
+      <h1>${esc(r.title)}</h1>
+      <p style="color:var(--muted)">${esc(r.description)}</p>
+      <p style="margin:.6rem 0">By ${esc(r.authorName)} · ${stars(r.rating, r.ratingCount)}</p>
+      <div class="panel" style="margin-top:1rem">
+        <h2>Rate this recipe</h2>
+        <div class="rate-row" id="rate">${[1,2,3,4,5].map(n => `<button type="button" data-v="${n}" aria-label="${n} star${n>1?'s':''}">★</button>`).join('')}</div>
+        <div id="msg"></div>
+      </div>
+      ${mine ? '<button class="btn danger sm" id="del">Delete recipe</button>' : ''}
+    </div>
+  </div>
+  <div class="detail" style="padding-top:0">
+    <div class="panel"><h2>Ingredients</h2><ul>${r.ingredients.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+    <div class="panel"><h2>Instructions</h2><ol>${r.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol></div>
+  </div>`;
+
+  const msg = document.getElementById('msg');
+  document.querySelectorAll('#rate button').forEach(b => {
+    b.addEventListener('mouseenter', () => document.querySelectorAll('#rate button').forEach(x => x.classList.toggle('on', +x.dataset.v <= +b.dataset.v)));
+    b.addEventListener('click', async () => {
+      if (!Auth.token) return showMsg(msg, 'Log in on the User Profile page to rate recipes.');
+      try { draw(await api(`/recipes/${id}/rate`, { method: 'POST', body: { value: +b.dataset.v } })); showMsg(document.getElementById('msg'), 'Thanks for rating!', 'ok'); }
+      catch (err) { showMsg(msg, err.message); }
+    });
+  });
+  document.getElementById('rate').addEventListener('mouseleave', () => document.querySelectorAll('#rate button').forEach(x => x.classList.remove('on')));
+  const del = document.getElementById('del');
+  if (del) del.addEventListener('click', async () => {
+    if (!confirm('Delete this recipe? This cannot be undone.')) return;
+    try { await api('/recipes/' + id, { method: 'DELETE' }); location.href = '/recipes.html'; } catch (err) { showMsg(msg, err.message); }
+  });
+}
+api('/recipes/' + id).then(draw).catch(err => root.innerHTML = `<p class="empty">${esc(err.message)} <a href="/recipes.html"><u>Back to recipes</u></a></p>`);
+</script></body></html>

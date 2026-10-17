@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse Recipes – RecipeHub</title><link rel="stylesheet" href="/css/style.css"></head><body>
+<main class="wrap">
+  <div class="page-head"><h1>Browse recipes</h1></div>
+  <form class="filters" id="filters">
+    <div><label for="q">Title or ingredient</label><input type="search" id="q" placeholder="e.g. egg"></div>
+    <div><label for="category">Category</label><select id="category"><option value="">All categories</option></select></div>
+    <div><label for="maxTime">Cooking time</label>
+      <select id="maxTime"><option value="">Any time</option><option value="15">Up to 15 min</option><option value="30">Up to 30 min</option><option value="60">Up to 1 hour</option></select></div>
+    <button class="btn" type="submit">Apply filters</button>
+  </form>
+  <div class="grid" id="list"></div>
+</main>
+<script src="/js/app.js"></script>
+<script>
+renderLayout('browse');
+const f = { q: q, category: category, maxTime: maxTime };
+category.insertAdjacentHTML('beforeend', CATEGORIES.map(c => `<option>${c.name}</option>`).join(''));
+const params = new URLSearchParams(location.search);
+for (const k in f) if (params.get(k)) f[k].value = params.get(k);
+
+async function load() {
+  const qs = new URLSearchParams();
+  for (const k in f) if (f[k].value) qs.set(k, f[k].value);
+  list.innerHTML = '<p class="empty">Loading recipes…</p>';
+  try {
+    const data = await api('/recipes?' + qs);
+    list.innerHTML = data.length ? data.map(recipeCard).join('') : '<p class="empty">No recipes match these filters. Try a different search or <a href="/submit.html"><u>add your own</u></a>.</p>';
+  } catch (err) { list.innerHTML = `<p class="empty">${esc(err.message)}</p>`; }
+}
+filters.addEventListener('submit', e => { e.preventDefault(); load(); });
+load();
+</script></body></html>
